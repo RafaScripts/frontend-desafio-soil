@@ -16,6 +16,11 @@ const Index = () =>{
             const response = await api.post('sessions', { email, password });
 
             localStorage.setItem('token', response.data.token);
+            localStorage.setItem('provider', response.data.provider);
+
+            if(!provider){
+                history.push('/home');
+            }
 
             history.push('/users');
         }catch (err) {
