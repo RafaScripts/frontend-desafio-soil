@@ -1,12 +1,16 @@
-import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import logon from './pages/logon';
+import logon from "./pages/logon";
 
-export default function Routes(){
+const Routes = () => {
     return(
-        <BrowserRouter>
-            <Route path={'/'} component={logon} />
-        </BrowserRouter>
-    );
+        <Router>
+            <Switch>
+                <Route path={'/'} component={logon}/>
+            </Switch>
+        </Router>
+    )
 }
+
+export default Routes;
