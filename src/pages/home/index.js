@@ -21,6 +21,19 @@ export default function Home(){
         loadUsers();
     }, []);
 
+    async function deleteUser(id){
+        const response = api.delete(`users/${id}`)
+
+        alert('Usuario deletado')
+    }
+
+    async function updateUser(id){
+        localStorage.setItem('id_user', id);
+
+        history.push('/users/edit');
+
+    }
+
     function handleLogout() {
         localStorage.clear();
 
@@ -34,7 +47,7 @@ export default function Home(){
                 <img alt="Logo" />
                 <span>Bem Vindo</span>
 
-                <Link className="button" to="/incidents/new">Cadrastar novo Paciente</Link>
+                <Link className="button">Cadrastar novo Paciente</Link>
                 <button onClick={handleLogout} type="button">
                     <FiPower size={18} color="#1dcd81" />
                 </button>
@@ -51,11 +64,11 @@ export default function Home(){
 
 
 
-                        <button className="btw" type="button">
+                        <button className="btw" type="button" onClick={() => deleteUser(users.id)}>
                             <FiTrash2 size={20} color="#a8a8b3"/>
                         </button>
 
-                        <button className="btt" type="button">
+                        <button className="btt" type="button" onClick={() => updateUser(users.id)}>
                             <FiDatabase size={20} color="#a8a8b3"/>
                         </button>
                     </li>
