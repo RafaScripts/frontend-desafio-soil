@@ -14,12 +14,12 @@ export default function Logon({ history }) {
         try{
             const response = await api.post('sessions', { email, password });
 
-            localStorage.setItem('token', response.data.token);
+            sessionStorage.setItem('token', response.data.token);
             localStorage.setItem('provider', response.data.user.provider);
+            localStorage.setItem('my_ID', response.data.id);
 
 
             history.push('/home');
-
 
         }catch (err) {
             alert("dados invalidos!");

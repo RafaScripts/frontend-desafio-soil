@@ -22,9 +22,11 @@ export default function Home(){
     }, []);
 
     async function deleteUser(id){
-        const response = api.delete(`users/${id}`)
+        const response = await api.delete(`users/${id}`)
 
-        alert('Usuario deletado')
+        alert(response.data.delete)
+
+        history.push('/home')
     }
 
     async function updateUser(id){
