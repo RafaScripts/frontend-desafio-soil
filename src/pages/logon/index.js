@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import {FiLogIn} from 'react-icons/fi';
-import { useHistory } from "react-router-dom"
-//import './styles.css';
+import './styles.css';
 import api from '../../services/api';
+import nutri from '../../assets/nutri.png';
 
-const Index = () =>{
+export default function Logon({ history }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const history = useHistory();
 
     async function handleLogin(e) {
         e.preventDefault();
@@ -16,13 +15,12 @@ const Index = () =>{
             const response = await api.post('sessions', { email, password });
 
             localStorage.setItem('token', response.data.token);
-            localStorage.setItem('provider', response.data.provider);
+            localStorage.setItem('provider', response.data.user.provider);
 
-            if(!provider){
-                history.push('/home');
-            }
 
-            history.push('/users');
+            history.push('/home');
+
+
         }catch (err) {
             alert("dados invalidos!");
         }
@@ -30,8 +28,8 @@ const Index = () =>{
 
     }
     return (
-        <div >
-            <section >
+        <div className="logon-conteiner" >
+            <section className="form">
                 <form onSubmit={handleLogin}>
                     <h1>Faça seu Logon</h1>
                     <input
@@ -54,9 +52,8 @@ const Index = () =>{
                 </form>
             </section>
 
-
+            <img src= {nutri} alt="nutri" />
         </div>
     );
 }
 
-export default Index;
