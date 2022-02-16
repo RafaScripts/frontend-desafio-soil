@@ -1,52 +1,70 @@
-import React, { useState, useEfect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import './styles.css';
+import { Link, useHistory } from 'react-router-dom';
+import { FiPower, FiTrash2, FiDatabase } from 'react-icons/fi';
 import api from '../../services/api';
+import nutrilogo from "../../assets/nutrilogo.svg";
 
-export default function home(){
-    const token = localStorage.getItem('token');
+export default function Home(){
+    const Token = localStorage.getItem('token');
     const [users, setUsers] = useState([]);
+    const history = useHistory();
 
-    useEfect(() => {
-        api.get('users', {
-            Headers: {
-                Authorization: token,
-            }
-        }).then(response => {
+    //console.log(Token);
+
+    useEffect(() => {
+        async function loadUsers(){
+            const response = await api.get('users', {
+                headers: {
+                    'Authorization': `Bearer ${Token}`
+                }
+            });
+
             setUsers(response.data);
-        })
+        }
 
-<<<<<<< HEAD
+        loadUsers();
+    }, [users]);
+
     async function deleteUser(id){
-        const response = await api.delete(`users/${id}`)
+        await api.delete(`users/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${Token}`
+            }
+        });
 
-        alert(response.data.delete)
+        alert('usuario deletado')
 
-        history.push('/home')
+        history.push('/home');
     }
 
-    async function updateUser(id){
-        localStorage.setItem('id_user', id);
+    function menu(id, userName){
+        localStorage.setItem('user_id', id);
 
-        history.push('/users/edit');
+        localStorage.setItem('user_name', userName);
 
+        history.push('users/menu');
+    }
+
+    function criar(id){
+        localStorage.setItem('user_id', id);
+
+        history.push('users/menu/new');
     }
 
     function handleLogout() {
         localStorage.clear();
-=======
->>>>>>> parent of bd93b52... update
 
-    }, [token]);
+        history.push('/');
 
+    }
 
     return(
-<<<<<<< HEAD
         <div className="profile-conteiner">
             <header>
-                <img alt="Logo" />
-                <span>Bem Vindo</span>
+                <img src={nutrilogo} alt="Logo" />
 
-                <Link className="button">Cadrastar novo Paciente</Link>
+                <Link className="button" to="/users/new">Cadrastar novo Paciente</Link>
                 <button onClick={handleLogout} type="button">
                     <FiPower size={18} color="#1dcd81" />
                 </button>
@@ -67,16 +85,20 @@ export default function home(){
                             <FiTrash2 size={20} color="#a8a8b3"/>
                         </button>
 
-                        <button className="btt" type="button" onClick={() => updateUser(users.id)}>
+                        <button className="btt" type="button">
                             <FiDatabase size={20} color="#a8a8b3"/>
+                        </button>
+
+                        <button className="add" onClick={() => menu(users.id, users.userName)}>
+                            Cardapios
+                        </button>
+
+                        <button className="add2" onClick={() => criar(users.id)}>
+                            Criar
                         </button>
                     </li>
                 ))}
             </ul>
-=======
-        <div>
-
->>>>>>> parent of bd93b52... update
         </div>
     );
 }

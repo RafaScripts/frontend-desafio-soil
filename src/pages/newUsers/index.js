@@ -1,24 +1,32 @@
-
-
 import React, { useState } from 'react';
 import {FiLogIn} from 'react-icons/fi';
 import './styles.css';
 import api from '../../services/api';
-import nutri from '../../assets/nutri.png';
-import nutrilogo from "../../assets/nutrilogo.svg";
+import nutri from "../../assets/nutri.png";
 
-export default function Logon({ history }) {
+export default function UserNew({ history }) {
+    const token = localStorage.getItem('token');
+    const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    async function handleLogin(e) {
+    const data = {
+        userName,
+        email,
+        password
+    }
+
+    async function create(e) {
         e.preventDefault();
 
         try{
-            const response = await api.post('sessions', { email, password });
+            await api.post('users', data,{
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
 
-            localStorage.setItem('token', response.data.token);
-            localStorage.setItem('provider', response.data.user.provider);
+            alert('usuario cadastrado');
 
 
             history.push('/home');
@@ -33,9 +41,14 @@ export default function Logon({ history }) {
     return (
         <div className="logon-conteiner" >
             <section className="form">
-                <img src={nutrilogo} alt="logo"/>
-                <form onSubmit={handleLogin}>
-                    <h1>Faça seu Logon</h1>
+                <form onSubmit={create}>
+                    <h1>Cadastrar Paciente</h1>
+                    <input
+                        placeholder="Nome"
+                        value={userName}
+                        onChange={e => setUserName(e.target.value)}
+                    />
+
                     <input
                         placeholder="Email"
                         value={email}
@@ -50,7 +63,7 @@ export default function Logon({ history }) {
 
 
                     <button className="button" type="submit"><FiLogIn size={16} color= "#000" />
-                        Entrar</button>
+                        cadastrar</button>
 
 
                 </form>

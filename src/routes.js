@@ -1,16 +1,22 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import logon from "./pages/logon";
+import Home from "./pages/home";
+import UserNew from "./pages/newUsers";
+import Menus from "./pages/Menus";
+import NewMenus from "./pages/newMenu";
 
-const Routes = () => {
+export default function Routes(){
     return(
-        <Router>
+        <BrowserRouter>
             <Switch>
-                <Route path={'/'} component={logon}/>
+                <Route path={'/'} exact component={logon}/>
+                <Route path={'/home'} component={Home}/>
+                <Route path={'/users/new'} component={UserNew} />
+                <Route path={'/users/menu'} exact component={Menus} />
+                <Route path={'/users/menu/new'} component={NewMenus} />
             </Switch>
-        </Router>
+        </BrowserRouter>
     )
 }
-
-export default Routes;
