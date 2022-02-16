@@ -82,6 +82,9 @@ export default function Home(){
 
 
                         <button className="btw" type="button" onClick={() => deleteUser(users.id)}>
+
+                        <button className="btw" type="button">
+
                             <FiTrash2 size={20} color="#a8a8b3"/>
                         </button>
 
