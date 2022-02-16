@@ -9,6 +9,10 @@
     justify-content: center;
 }
 
+.logg {
+    width: 400px;
+}
+
 .new-incident-conteiner .content {
     width: 100%;
     padding: 96px;

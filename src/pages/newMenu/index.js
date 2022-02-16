@@ -46,7 +46,7 @@ export default function NewMenus(history) {
         <div className="new-incident-conteiner">
             <div className="content">
                 <section>
-                    <img src={nutrilogo} alt="Logo" />
+                    <img className="logg" src={nutrilogo} alt="Logo" />
 
                     <h1>Cadrastar Novo Cardapio</h1>
                     <p>Escreva em detalhes o cardapio para seu paciente.</p>
@@ -99,8 +99,11 @@ export default function NewMenus(history) {
                         onChange={e => setFruits(e.target.value)}
                     />
 
+                    <input
+                        type="date"
+                    />
 
-                    <button className="button" type="submit" to="/home"><FiLogIn size={16} color= "#000" />
+                    <button className="button" type="submit"><FiLogIn size={16} color= "#000" />
                         cadastrar</button>
                 </form>
             </div>
