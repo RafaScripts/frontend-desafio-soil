@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import {FiLogIn} from 'react-icons/fi';
-import './styles.css';
+import { useHistory } from "react-router-dom"
+//import './styles.css';
 import api from '../../services/api';
-import nutri from '../../assets/nutri.png';
 
-export default function Logon({ history }) {
+const Index = () =>{
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const history = useHistory();
 
     async function handleLogin(e) {
         e.preventDefault();
@@ -14,6 +15,7 @@ export default function Logon({ history }) {
         try{
             const response = await api.post('sessions', { email, password });
 
+<<<<<<< HEAD
             sessionStorage.setItem('token', response.data.token);
             localStorage.setItem('provider', response.data.user.provider);
             localStorage.setItem('my_ID', response.data.id);
@@ -21,6 +23,16 @@ export default function Logon({ history }) {
 
             history.push('/home');
 
+=======
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('provider', response.data.provider);
+
+            if(!provider){
+                history.push('/home');
+            }
+
+            history.push('/users');
+>>>>>>> parent of bd93b52... update
         }catch (err) {
             alert("dados invalidos!");
         }
@@ -28,8 +40,8 @@ export default function Logon({ history }) {
 
     }
     return (
-        <div className="logon-conteiner" >
-            <section className="form">
+        <div >
+            <section >
                 <form onSubmit={handleLogin}>
                     <h1>Faça seu Logon</h1>
                     <input
@@ -52,8 +64,9 @@ export default function Logon({ history }) {
                 </form>
             </section>
 
-            <img src= {nutri} alt="nutri" />
+
         </div>
     );
 }
 
+export default Index;

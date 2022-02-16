@@ -1,26 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import './styles.css';
-import { Link, useHistory } from 'react-router-dom';
-import { FiPower, FiTrash2, FiDatabase } from 'react-icons/fi';
+import React, { useState, useEfect } from 'react';
+import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
-export default function Home(){
-    const Token = localStorage.getItem('token');
+export default function home(){
+    const token = localStorage.getItem('token');
     const [users, setUsers] = useState([]);
-    const history = useHistory();
 
-    //console.log(Token);
-
-    useEffect(() => {
-        async function loadUsers(){
-            const response = await api.get('users');
-
+    useEfect(() => {
+        api.get('users', {
+            Headers: {
+                Authorization: token,
+            }
+        }).then(response => {
             setUsers(response.data);
-        }
+        })
 
-        loadUsers();
-    }, []);
-
+<<<<<<< HEAD
     async function deleteUser(id){
         const response = await api.delete(`users/${id}`)
 
@@ -38,12 +33,14 @@ export default function Home(){
 
     function handleLogout() {
         localStorage.clear();
+=======
+>>>>>>> parent of bd93b52... update
 
-        history.push('/');
+    }, [token]);
 
-    }
 
     return(
+<<<<<<< HEAD
         <div className="profile-conteiner">
             <header>
                 <img alt="Logo" />
@@ -76,7 +73,10 @@ export default function Home(){
                     </li>
                 ))}
             </ul>
+=======
+        <div>
+
+>>>>>>> parent of bd93b52... update
         </div>
     );
 }
-
