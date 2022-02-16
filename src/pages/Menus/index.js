@@ -62,7 +62,7 @@ export default function Menus(history){
             <ul>
                 {menu.map(menu => (
                     <li key={menu.id}>
-                        <p>Data de Criação: {menu.created_at}</p><br/>
+                        <p>Data de Criação: {menu.creation}</p><br/>
                         <p> Semana: {menu.week}</p><br/>
                         <p> Horario: {menu.time}</p><br/>
                         <p>Proteina: {menu.protein}</p><br/>
