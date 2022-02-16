@@ -65,13 +65,25 @@ export default function Home(){
                         <span> Email: {users.email}</span>
 
 
+<<<<<<< Updated upstream
 
                         <button className="btw" type="button" onClick={() => deleteUser(users.id)}>
+=======
+                        <button className="btw" type="button">
+>>>>>>> Stashed changes
                             <FiTrash2 size={20} color="#a8a8b3"/>
                         </button>
 
                         <button className="btt" type="button" onClick={() => updateUser(users.id)}>
                             <FiDatabase size={20} color="#a8a8b3"/>
+                        </button>
+
+                        <button className="add">
+                            Adicionar Cardapio
+                        </button>
+
+                        <button className="add2">
+                            Vizualizar Cardapios
                         </button>
                     </li>
                 ))}

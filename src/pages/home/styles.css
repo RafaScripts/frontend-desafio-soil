@@ -53,7 +53,7 @@
 
 .profile-conteiner ul li {
     background: #fff;
-    padding: 24px;
+    padding: 34px;
     border-radius: 8px;
     position: relative;
 }
@@ -62,7 +62,7 @@
     position: absolute;
     background: transparent;
     right: 24px;
-    top: 24px;
+    top: 8px;
     border: 0;
 }
 
@@ -70,8 +70,38 @@
     position: absolute;
     background: transparent;
     right: 54px;
-    top: 24px;
+    top: 8px;
     border: 0;
+}
+
+.add {
+    position: absolute;
+    background: transparent;
+    height: 30px;
+    width: 190px;
+    right: 24px;
+    top: 38px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: transparent;
+    background: #1dcd81;
+    color: #fff;
+    font-weight: 700;
+}
+
+.add2 {
+    position: absolute;
+    background: transparent;
+    height: 30px;
+    width: 190px;
+    right: 24px;
+    top: 74px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: transparent;
+    background: #1dcd81;
+    color: #fff;
+    font-weight: 700;
 }
 
 .profile-conteiner ul li button:hover {
