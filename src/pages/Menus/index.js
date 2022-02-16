@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
 import { Link } from 'react-router-dom';
-import { FiPower, FiTrash2, FiDatabase } from 'react-icons/fi';
+import { FiPower, FiTrash2 } from 'react-icons/fi';
 import api from '../../services/api';
 import nutrilogo from "../../assets/nutrilogo.svg";
 
 export default function Menus(history){
-    const token = localStorage.getItem('token');
     const name = localStorage.getItem('user_name');
     const [ menu, setMenu ] = useState([]);
 
@@ -14,7 +13,8 @@ export default function Menus(history){
 
     useEffect(() => {
         async function loadMenus(){
-            const id = localStorage.getItem('user_id')
+            const id = localStorage.getItem('user_id');
+            const token = localStorage.getItem('token');
             const response = await api.get(`users/menu/${id}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -28,6 +28,7 @@ export default function Menus(history){
     }, [menu]);
 
     async function deleteMenu(id){
+        const token = localStorage.getItem('token');
         await api.delete(`users/menu/del/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -61,7 +62,7 @@ export default function Menus(history){
             <ul>
                 {menu.map(menu => (
                     <li key={menu.id}>
-                        <p>ID: {menu.id}</p><br/>
+                        <p>Data de Criação: {menu.created_at}</p><br/>
                         <p> Semana: {menu.week}</p><br/>
                         <p> Horario: {menu.time}</p><br/>
                         <p>Proteina: {menu.protein}</p><br/>

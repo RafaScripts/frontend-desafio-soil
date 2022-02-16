@@ -6,7 +6,6 @@ import api from '../../services/api';
 import nutrilogo from "../../assets/nutrilogo.svg";
 
 export default function Home(){
-    const Token = localStorage.getItem('token');
     const [users, setUsers] = useState([]);
     const history = useHistory();
 
@@ -14,6 +13,7 @@ export default function Home(){
 
     useEffect(() => {
         async function loadUsers(){
+            const Token = localStorage.getItem('token');
             const response = await api.get('users', {
                 headers: {
                     'Authorization': `Bearer ${Token}`
@@ -27,6 +27,7 @@ export default function Home(){
     }, [users]);
 
     async function deleteUser(id){
+        const Token = localStorage.getItem('token');
         await api.delete(`users/${id}`, {
             headers: {
                 'Authorization': `Bearer ${Token}`
