@@ -15,6 +15,7 @@ export default function NewMenus(history) {
     const [vegetal, setVegetal] = useState('');
     const [greens, setGreens] = useState('');
     const [fruits, setFruits] = useState('');
+    const [creation, setCreation] = useState('');
 
     const data = {
         week,
@@ -23,7 +24,8 @@ export default function NewMenus(history) {
         carb,
         vegetal,
         greens,
-        fruits
+        fruits,
+        creation
     }
 
     async function create(e) {
@@ -101,6 +103,8 @@ export default function NewMenus(history) {
 
                     <input
                         type="date"
+                        value={creation}
+                        onChange={e => setCreation(e.target.value)}
                     />
 
                     <button className="button" type="submit"><FiLogIn size={16} color= "#000" />
